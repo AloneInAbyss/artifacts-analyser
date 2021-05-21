@@ -1,0 +1,2 @@
+const ArtifactsSubstats = require('./ArtifactsSubstats')
+
