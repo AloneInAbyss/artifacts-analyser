@@ -31,7 +31,7 @@ const ArtifactsSubstats = {
     ER:       [3.6, 4.1, 4.7, 5.2],
     CritRate: [2.2, 2.5, 2.8, 3.1],
     CritDmg:  [4.4, 5.0, 5.6, 6.2],
-    MaxLevel: 20
+    MaxLevel: 16
   },
   threeStar: {
     HPFlat:   [100, 115, 129, 143],
@@ -44,7 +44,7 @@ const ArtifactsSubstats = {
     ER:       [2.7, 3.1, 3.5, 3.9],
     CritRate: [1.6, 1.9, 2.1, 2.3],
     CritDmg:  [3.3, 3.7, 4.2, 4.7],
-    MaxLevel: 16
+    MaxLevel: 12
   },
   twoStar: {
     HPFlat:   [50, 61, 72],
@@ -57,7 +57,7 @@ const ArtifactsSubstats = {
     ER:       [1.8, 2.2, 2.6],
     CritRate: [1.1, 1.3, 1.6],
     CritDmg:  [2.2, 2.6, 3.1],
-    MaxLevel: 12
+    MaxLevel: 8
   },
   oneStar: {
     HPFlat:   [24, 30],
@@ -70,7 +70,7 @@ const ArtifactsSubstats = {
     ER:       [1.3, 1.6],
     CritRate: [0.8, 1.0],
     CritDmg:  [1.6, 1.9],
-    MaxLevel: 8
+    MaxLevel: 4
   }
 }
 
