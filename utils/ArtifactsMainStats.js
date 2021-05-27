@@ -83,7 +83,7 @@ const ArtifactsMainStats = {
     HealBonus: [2.4 , 3.3 , 4.3 , 5.2 , 6.1 ],
     MaxLevel: 4
   },
-  // ArtifactsMainStats.discover(number stars, number level, String stat)
+  // ArtifactsMainStats.discover(Number stars, Number level, String stat)
   discover(stars, level, stat) {
     switch (stat) {
       case 'HPFlat':
