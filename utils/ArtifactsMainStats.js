@@ -83,17 +83,51 @@ const ArtifactsMainStats = {
     HealBonus: [2.4 , 3.3 , 4.3 , 5.2 , 6.1 ],
     MaxLevel: 4
   },
+  // ArtifactsMainStats.discover(number stars, number level, String stat)
   discover(stars, level, stat) {
+    switch (stat) {
+      case 'HPFlat':
+      case 'ATKFlat':
+      case 'HPPerc':
+      case 'ATKPerc':
+      case 'DEFPerc':
+      case 'PhysDmg':
+      case 'ElemDmg':
+      case 'EM':
+      case 'ER':
+      case 'CritRate':
+      case 'CritDmg':
+      case 'HealBonus':
+        break;
+      default:
+        throw new Error('Incorrect stat value')
+    }
+    
     switch (stars) {
       case 5:
+        if (level < 0 || level > 20) {
+          throw new Error('Incorrect level value')
+        }
         return this.fiveStar[stat][level]
       case 4:
+        if (level < 0 || level > 16) {
+          throw new Error('Incorrect level value')
+        }
         return this.fourStar[stat][level]
       case 3:
+        if (level < 0 || level > 12) {
+          throw new Error('Incorrect level value')
+        }
         return this.threeStar[stat][level]
       case 2:
+        if (level < 0 || level > 8) {
+          throw new Error('Incorrect level value')
+        }
         return this.twoStar[stat][level]
       case 1:
+        if (level < 0 || level > 4) {
+          throw new Error('Incorrect level value')
+        }
         return this.oneStar[stat][level]
       default:
         throw new Error('Incorrect stars value')
