@@ -72,9 +72,10 @@ const ArtifactsSubstats = {
     CritDmg:  [1.6, 1.9],
     MaxLevel: 4
   },
+  // ArtifactsSubstats.calculator(String stat, Number value, Number level, Number stars)
   calculator(stat, value, level, stars) {
-    let rarity
     let upgradesCount = Math.floor(level / 4) + 1
+    let rarity = '', i = 0
 
     switch (stars) {
       case 5:
@@ -111,6 +112,24 @@ const ArtifactsSubstats = {
         throw new Error('Incorrect stars value')
     }
 
+    switch (stat) {
+      case 'HPFlat':
+      case 'ATKFlat':
+      case 'HPPerc':
+      case 'ATKPerc':
+      case 'DEFPerc':
+      case 'PhysDmg':
+      case 'ElemDmg':
+      case 'EM':
+      case 'ER':
+      case 'CritRate':
+      case 'CritDmg':
+      case 'HealBonus':
+        break;
+      default:
+        throw new Error('Incorrect stat value')
+    }
+
     function getObjectSize(obj) {
       let size = 0, key
 
@@ -121,18 +140,20 @@ const ArtifactsSubstats = {
       return size
     }
 
-    let i = 0
+    let artifactStat = ArtifactsSubstats[rarity][stat]
+    let length = getObjectSize(artifactStat)
+    let matches = []
+
     switch (upgradesCount) {
       case 1:
-        let artifactStat = ArtifactsSubstats[rarity][stat]
-        let length = getObjectSize(artifactStat)
-        let matches = 0
+        /* Caso seja 1 o retorno deveria ser sempre 1
+        upgrade já que não possível que o artefato tenha
+        um valor mais que um dos default. */
 
         for(i; i < length; i++) {
           if (value === artifactStat[i]) {
-            matches += 1
+            matches.push(artifactStat[i])
           }
-          
         }
         
         if (matches === 0) {
@@ -159,14 +180,14 @@ const ArtifactsSubstats = {
         break
     }
 
-    
-
-    // for(i; i < upgradesCount; i++) {
-      
-
-    // }
-
-    return stat + ', ' + value
+    // Mudar o retorno para a quantidade de vezes que o stat upou
+    if (matches.length > 1) {
+      return 'Several matches found'
+    } else if (matches.length > 0) {
+      return matches[0]
+    } else {
+      throw new Error('No matches found')
+    }
   }
 }
 
