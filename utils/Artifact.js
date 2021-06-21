@@ -13,12 +13,12 @@ class Artifact {
   }
 
   setSubstat(number, stat, value) {
-    let upgrade = ArtifactsSubstats.calculator(stat, value, this.level, this.stars)
+    let upgrades = ArtifactsSubstats.calculator(stat, value, this.level, this.stars)
 
     this.substats[number] = {
       stat,
       value,
-      upgrade
+      upgrades
     }
     
     return this.substats[number]

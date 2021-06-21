@@ -13,10 +13,13 @@ const GanyuCirclet = new Artifact('Herói Invernal', 5, 'Circlet', 20, 'CritDmg'
 // GanyuCirclet.name = 'Bruxa das Chamas Carmesim'
 // console.log(GanyuCirclet)
 
-const GanyuPlume = new Artifact('Herói Invernal', 5, 'Plume', 0, 'ATKFlat')
-GanyuPlume.setSubstat(0, 'CritDmg', 7.0)
-console.log(GanyuPlume)
+// const GanyuPlume = new Artifact('Herói Invernal', 5, 'Plume', 0, 'ATKFlat')
+// GanyuPlume.setSubstat(0, 'CritDmg', 7.0)
+// console.log(GanyuPlume)
 
+const GanyuSands = new Artifact('Herói Invernal', 4, 'Sands', 12, 'ER')
+GanyuSands.setSubstat(0, 'EM', 53)
+console.log(GanyuSands)
 
 
 

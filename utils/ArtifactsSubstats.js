@@ -74,13 +74,26 @@ const ArtifactsSubstats = {
   },
   // ArtifactsSubstats.calculator(String stat, Number value, Number level, Number stars)
   calculator(stat, value, level, stars) {
-    let upgradesCount = Math.floor(level / 4) + 1
-    let rarity = '', i = 0
+    let maxUpgradesCount = 0;
+    let rarity = '', i = 0, j = 0, k = 0, l = 0, m = 0;
 
     switch (stars) {
       case 5:
         if (level < 0 || level > 20) {
           throw new Error('Incorrect level value')
+        }
+        if (level === 20) {
+          maxUpgradesCount = 5
+        } else if (level >= 16) {
+          maxUpgradesCount = 4
+        } else if (level >= 12) {
+          maxUpgradesCount = 3
+        } else if (level >= 8) {
+          maxUpgradesCount = 2
+        } else if (level >= 4) {
+          maxUpgradesCount = 1
+        } else {
+          maxUpgradesCount = 0
         }
         rarity = 'fiveStar'
         break
@@ -88,11 +101,25 @@ const ArtifactsSubstats = {
         if (level < 0 || level > 16) {
           throw new Error('Incorrect level value')
         }
+        if (level === 16) {
+          maxUpgradesCount = 3
+        } else if (level >= 12) {
+          maxUpgradesCount = 2
+        } else if (level >= 8) {
+          maxUpgradesCount = 1
+        } else {
+          maxUpgradesCount = 0
+        }
         rarity = 'fourStar'
         break
       case 3:
         if (level < 0 || level > 12) {
           throw new Error('Incorrect level value')
+        }
+        if (level === 12) {
+          maxUpgradesCount = 1
+        } else {
+          maxUpgradesCount = 0
         }
         rarity = 'threeStar'
         break
@@ -100,12 +127,14 @@ const ArtifactsSubstats = {
         if (level < 0 || level > 8) {
           throw new Error('Incorrect level value')
         }
+        maxUpgradesCount = 0
         rarity = 'twoStar'
         break
       case 1:
         if (level < 0 || level > 4) {
           throw new Error('Incorrect level value')
         }
+        maxUpgradesCount = 0
         rarity = 'oneStar'
         break
       default:
@@ -143,25 +172,161 @@ const ArtifactsSubstats = {
     let artifactStat = ArtifactsSubstats[rarity][stat]
     let length = getObjectSize(artifactStat)
     let matches = []
+    let currentResult = [], result = true;
 
-    switch (upgradesCount) {
+    function arrayCompare(_arr1, _arr2) {
+      if (
+        !Array.isArray(_arr1)
+        || !Array.isArray(_arr2)
+        || _arr1.length !== _arr2.length
+      ) {
+        return false;
+      }
+      
+      // .concat() to not mutate arguments
+      const arr1 = _arr1.concat().sort();
+      const arr2 = _arr2.concat().sort();
+      
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
+    switch (maxUpgradesCount) {
+      case 0:
+        // Nenhum upgrade
+        for(i; i < length; i++) {
+          if (value === artifactStat[i]) {
+            matches.push(artifactStat[i])
+          }
+        
+          if (matches.length > 0) {
+            return 'No upgrades - Base value: ' + matches
+          }
+        }
+
+        break
       case 1:
-        /* Caso seja 1 o retorno deveria ser sempre 1
-        upgrade já que não possível que o artefato tenha
-        um valor mais que um dos default. */
-
+        // Nenhum upgrade
         for(i; i < length; i++) {
           if (value === artifactStat[i]) {
             matches.push(artifactStat[i])
           }
         }
+        i = 0;
         
-        if (matches === 0) {
-          throw new Error('Incorrect stat value')
+        if (matches.length > 0) {
+          return 'No upgrades - Base value: ' + matches
+        }
+
+        // Um upgrade
+        for(i; i < length; i++) {
+          for(j; j < length; j++) {
+            // console.log("subtração: " + (value - artifactStat[j]) + " igual a " + artifactStat[i]);
+            if (value - artifactStat[j] === artifactStat[i]) {
+              currentResult = [artifactStat[i], artifactStat[j]]
+
+              if (matches.length > 0) {
+                result = true
+                for (const element of matches) {
+                  if (arrayCompare(currentResult, element)) {
+                    result = false;
+                  }
+                }
+              }
+
+              if (result) {
+                matches.push(currentResult)
+              }
+            }
+          }
+          j = 0;
+        }
+        i = 0;
+
+        if (matches.length > 0) {
+          return matches.join(', ')
         }
 
         break
       case 2:
+        // Nenhum upgrade
+        for(i; i < length; i++) {
+          if (value === artifactStat[i]) {
+            matches.push(artifactStat[i])
+          }
+        }
+        i = 0;
+        
+        if (matches.length > 0) {
+          return 'No upgrades - Base value: ' + matches
+        }
+
+        // Um upgrade
+        for(i; i < length; i++) {
+          for(j; j < length; j++) {
+            // console.log("subtração: " + (value - artifactStat[j]) + " igual a " + artifactStat[i]);
+            if (value - artifactStat[j] === artifactStat[i]) {
+              currentResult = [artifactStat[i], artifactStat[j]]
+
+              if (matches.length > 0) {
+                result = true
+                for (const element of matches) {
+                  if (arrayCompare(currentResult, element)) {
+                    result = false;
+                  }
+                }
+              }
+
+              if (result) {
+                matches.push(currentResult)
+              }
+            }
+          }
+          j = 0;
+        }
+        i = 0;
+
+        if (matches.length > 0) {
+          return matches.join(', ')
+        }
+
+        // Dois upgrades
+        for(i; i < length; i++) {
+          for(j; j < length; j++) {
+            for(k; k < length; k++) {
+              // console.log("subtração: " + (value - artifactStat[k] - artifactStat[j]) + " igual a " + artifactStat[i]);
+              if (value - artifactStat[k] - artifactStat[j] === artifactStat[i]) {
+                currentResult = [artifactStat[i], artifactStat[j], artifactStat[k]]
+                // console.log(currentResult);
+                // console.log(matches);
+                if (matches.length > 0) {
+                  result = true
+                  for (const element of matches) {
+                    if (arrayCompare(currentResult, element)) {
+                      result = false;
+                    }
+                  }
+                }
+                
+                if (result) {
+                  matches.push([artifactStat[i], artifactStat[j], artifactStat[k]])
+                }
+              }
+            }
+            k = 0;
+          }
+          j = 0;
+        }
+        i = 0;
+
+        if (matches.length > 0) {
+          return matches.join(' + ')
+        }
         
         break
       case 3:
@@ -173,20 +338,17 @@ const ArtifactsSubstats = {
       case 5:
         
         break
-      case 6:
-        
-        break
       default:
         break
     }
 
     // Mudar o retorno para a quantidade de vezes que o stat upou
     if (matches.length > 1) {
-      return 'Several matches found'
+      return 'Several matches'
     } else if (matches.length > 0) {
-      return matches[0]
+      return 'One match'
     } else {
-      throw new Error('No matches found')
+      return 'No matches found'
     }
   }
 }
