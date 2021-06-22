@@ -82,11 +82,18 @@ const ArtifactsSubstats = {
     }
     catch (e) {
       console.log(e);
-      return;
+      return 'Error';
     }
 
     const artifactStat = ArtifactsSubstats[rarity][stat];
-    const matches = verifyUpgradeMatches(value, maxUpgradesCount, artifactStat);
+    let matches;
+    try {
+      matches = verifyUpgradeMatches(value, maxUpgradesCount, artifactStat);
+    }
+    catch (e) {
+      console.log(e);
+      return 'Error';
+    }
 
     if (matches !== undefined) {
       return matches;
@@ -304,6 +311,120 @@ function verifyUpgradeMatches(value, maxUpgradesCount, artifactStat) {
     }
   }
 
+  function checkIfThreeUpgrades() {
+    let currentResult;
+    let result = true;
+
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        for (let k = 0; k < length; k++) {
+          for (let m = 0; m < length; m++) {
+            if ((value - artifactStat[m] - artifactStat[k] - artifactStat[j]).toFixed(1) == artifactStat[i]) {
+              currentResult = [
+                artifactStat[i],
+                artifactStat[j],
+                artifactStat[k],
+                artifactStat[m],
+              ];
+
+              if (matches.length > 0) {
+                result = true;
+                for (const element of matches) {
+                  if (arrayCompare(currentResult, element)) {
+                    result = false;
+                  }
+                }
+              }
+
+              if (result) {
+                matches.push(currentResult);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function checkIfFourUpgrades() {
+    let currentResult;
+    let result = true;
+
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        for (let k = 0; k < length; k++) {
+          for (let m = 0; m < length; m++) {
+            for (let n = 0; n < length; n++) {
+              if ((value - artifactStat[n] - artifactStat[m] - artifactStat[k] - artifactStat[j]).toFixed(1) == artifactStat[i]) {
+                currentResult = [
+                  artifactStat[i],
+                  artifactStat[j],
+                  artifactStat[k],
+                  artifactStat[m],
+                  artifactStat[n],
+                ];
+
+                if (matches.length > 0) {
+                  result = true;
+                  for (const element of matches) {
+                    if (arrayCompare(currentResult, element)) {
+                      result = false;
+                    }
+                  }
+                }
+
+                if (result) {
+                  matches.push(currentResult);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function checkIfFiveUpgrades() {
+    let currentResult;
+    let result = true;
+
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        for (let k = 0; k < length; k++) {
+          for (let m = 0; m < length; m++) {
+            for (let n = 0; n < length; n++) {
+              for (let o = 0; o < length; o++) {
+                if ((value - artifactStat[o] - artifactStat[n] - artifactStat[m] - artifactStat[k] - artifactStat[j]).toFixed(1) == artifactStat[i]) {
+                  currentResult = [
+                    artifactStat[i],
+                    artifactStat[j],
+                    artifactStat[k],
+                    artifactStat[m],
+                    artifactStat[n],
+                    artifactStat[o],
+                  ];
+
+                  if (matches.length > 0) {
+                    result = true;
+                    for (const element of matches) {
+                      if (arrayCompare(currentResult, element)) {
+                        result = false;
+                      }
+                    }
+                  }
+
+                  if (result) {
+                    matches.push(currentResult);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   switch (maxUpgradesCount) {
   case 0:
     checkIfNoUpgrades();
@@ -348,16 +469,103 @@ function verifyUpgradeMatches(value, maxUpgradesCount, artifactStat) {
 
     break;
   case 3:
+    checkIfNoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfOneUpgrade();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfTwoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfThreeUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
 
     break;
   case 4:
+    checkIfNoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfOneUpgrade();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfTwoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfThreeUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfFourUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
 
     break;
   case 5:
+    checkIfNoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfOneUpgrade();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfTwoUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfThreeUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfFourUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
+
+    checkIfFiveUpgrades();
+
+    if (matches.length > 0) {
+      return matches.join(' + ');
+    }
 
     break;
   default:
-    break;
+    throw new Error(`Incorrect max upgrades count: ${maxUpgradesCount}`);
   }
 }
 

@@ -1,23 +1,18 @@
-const Artifact = require('./utils/Artifact')
+const Artifact = require('./utils/Artifact');
 
-const GanyuCirclet = new Artifact('Herói Invernal', 5, 'Circlet', 20, 'CritDmg')
-// console.log(GanyuCirclet)
+// const GanyuSands = new Artifact('Herói Invernal', 5, 'Sands', 20, 'ATKPerc');
+// GanyuSands.setSubstat(0, 'CritDmg', 46.8);
+// GanyuSands.setSubstat(1, 'CritRate', 23.4);
+// GanyuSands.setSubstat(2, 'HPPerc', 34.8);
+// GanyuSands.setSubstat(3, 'ER', 39);
+// console.log(GanyuSands);
 
-// console.log(GanyuCirclet.setSubstat(0, 'CritDmg', 27.0))
-// GanyuCirclet.setSubstat(0, 'CritDMG', 27.0)
-// GanyuCirclet.setSubstat(1, 'ATKPerc', 8.2)
-// GanyuCirclet.setSubstat(2, 'EM', 19)
-// GanyuCirclet.setSubstat(3, 'ER', 5.2)
-// console.log(GanyuCirclet)
+/*
 
-// GanyuCirclet.name = 'Bruxa das Chamas Carmesim'
-// console.log(GanyuCirclet)
+  - Verificar se o substatus é igual ao mainstatus.
+  - Verificar se há status duplicados, entre os substatus.
+  - Verificar a quantidade total de upgrades encontrada,
+    porque há um limite dependendo do nível/raridade do artefato.
+  - Verificar os casos em que o valor arredonda para cima.
 
-// const GanyuPlume = new Artifact('Herói Invernal', 5, 'Plume', 0, 'ATKFlat')
-// GanyuPlume.setSubstat(0, 'CritDmg', 7.0)
-// console.log(GanyuPlume)
-
-const GanyuSands = new Artifact('Herói Invernal', 4, 'Sands', 12, 'ER')
-GanyuSands.setSubstat(0, 'CritDmg', 18.6)
-console.log(GanyuSands)
-
+*/
