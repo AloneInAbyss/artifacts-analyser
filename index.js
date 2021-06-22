@@ -18,11 +18,6 @@ const GanyuCirclet = new Artifact('Herói Invernal', 5, 'Circlet', 20, 'CritDmg'
 // console.log(GanyuPlume)
 
 const GanyuSands = new Artifact('Herói Invernal', 4, 'Sands', 12, 'ER')
-GanyuSands.setSubstat(0, 'EM', 53)
+GanyuSands.setSubstat(0, 'CritDmg', 18.6)
 console.log(GanyuSands)
-
-
-
-
-
 
