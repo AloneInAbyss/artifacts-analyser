@@ -3,12 +3,14 @@
     Genshin Impact Wiki - Fandom
     https://genshin-impact.fandom.com/wiki/Artifacts/Main_Stat_Scaling#Values
 
-    These are the values that artifacts get in their main stats at each level. 
+    These are the values that artifacts get in their main stats at each level.
+    Also, discover() is a function that returns the value of the main status.
 */
 
+/* eslint-disable comma-spacing, no-multi-spaces */
 const ArtifactsMainStats = {
   fiveStar: {
-    //          0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20 
+    //          0     1     2     3     4     5     6     7     8     9     10    11    12    13    14    15    16    17    18    19    20
     HPFlat:    [717 , 920 , 1123, 1326, 1530, 1733, 1936, 2139, 2342, 2545, 2749, 2952, 3155, 3358, 3561, 3764, 3967, 4171, 4374, 4577, 4780],
     ATKFlat:   [47  , 60  , 73  , 86  , 100 , 113 , 126 , 139 , 152 , 166 , 179 , 192 , 205 , 219 , 232 , 245 , 258 , 272 , 285 , 298 , 311 ],
     HPPerc:    [7.0 , 9.0 , 11.0, 12.9, 14.9, 16.9, 18.9, 20.9, 22.8, 24.8, 26.8, 28.8, 30.8, 32.8, 34.7, 36.7, 38.7, 40.7, 42.7, 44.6, 46.6],
@@ -21,7 +23,7 @@ const ArtifactsMainStats = {
     CritRate:  [4.7 , 6.0 , 7.4 , 8.7 , 10.0, 11.4, 12.7, 14.0, 15.4, 16.7, 18.0, 19.3, 20.7, 22.0, 23.3, 24.7, 26.0, 27.3, 28.7, 30.0, 31.1],
     CritDmg:   [9.3 , 11.9, 14.6, 17.2, 19.9, 22.5, 25.2, 27.8, 30.5, 33.1, 35.8, 38.4, 41.1, 43.7, 46.3, 49.0, 51.6, 54.3, 56.9, 59.6, 62.2],
     HealBonus: [5.4 , 6.9 , 8.4 , 10.0, 11.5, 13.0, 14.5, 16.1, 17.6, 19.1, 20.6, 22.2, 23.7, 25.2, 26.7, 28.3, 29.8, 31.3, 32.8, 34.4, 35.9],
-    MaxLevel: 20
+    MaxLevel: 20,
   },
   fourStar: {
     HPFlat:    [645 , 828 , 1011, 1194, 1377, 1559, 1742, 1925, 2108, 2291, 2474, 2657, 2839, 3022, 3205, 3388, 3571],
@@ -36,7 +38,7 @@ const ArtifactsMainStats = {
     CritRate:  [4.2 , 5.4 , 6.6 , 7.8 , 9.0 , 10.1, 11.3, 12.5, 13.7, 14.9, 16.1, 17.3, 18.5, 19.7, 20.8, 22.0, 23.2],
     CritDmg:   [8.4 , 10.8, 13.1, 15.5, 17.9, 20.3, 22.7, 25.0, 27.4, 29.8, 32.2, 34.5, 36.9, 39.3, 41.7, 44.1, 46.4],
     HealBonus: [4.8 , 6.2 , 7.6 , 9.0 , 10.3, 11.7, 13.1, 14.4, 15.8, 17.2, 18.6, 19.9, 21.3, 22.7, 24.0, 25.4, 26.8],
-    MaxLevel: 16
+    MaxLevel: 16,
   },
   threeStar: {
     HPFlat:    [430 , 552 , 674 , 796 , 918 , 1040, 1162, 1283, 1405, 1527, 1649, 1771, 1893],
@@ -51,7 +53,7 @@ const ArtifactsMainStats = {
     CritRate:  [3.5 , 4.5 , 5.5 , 6.5 , 7.5 , 8.4 , 9.4 , 10.4, 11.4, 12.4, 13.4, 14.4, 15.4],
     CritDmg:   [7.0 , 9.0 , 11.0, 12.9, 14.9, 16.9, 18.9, 20.9, 22.8, 24.8, 26.8, 28.8, 30.8],
     HealBonus: [4.0 , 5.2 , 6.3 , 7.5 , 8.6 , 9.8 , 10.9, 12.0, 13.2, 14.3, 15.5, 16.6, 17.8],
-    MaxLevel: 12
+    MaxLevel: 12,
   },
   twoStar: {
     HPFlat:    [258 , 331 , 404 , 478 , 551 , 624 , 697 , 770 , 843 ],
@@ -66,7 +68,7 @@ const ArtifactsMainStats = {
     CritRate:  [2.8 , 3.6 , 4.4 , 5.2 , 6.0 , 6.8 , 7.6 , 8.3 , 9.1 ],
     CritDmg:   [5.6 , 7.2 , 8.8 , 10.4, 11.9, 13.5, 15.1, 16.7, 18.3],
     HealBonus: [3.2 , 4.1 , 5.1 , 6.0 , 6.9 , 7.8 , 8.7 , 9.6 , 10.5],
-    MaxLevel: 8
+    MaxLevel: 8,
   },
   oneStar: {
     HPFlat:    [129 , 178 , 227 , 275 , 324 ],
@@ -81,58 +83,80 @@ const ArtifactsMainStats = {
     CritRate:  [2.1 , 2.9 , 3.7 , 4.5 , 5.3 ],
     CritDmg:   [4.2 , 5.8 , 7.4 , 9.0 , 10.5],
     HealBonus: [2.4 , 3.3 , 4.3 , 5.2 , 6.1 ],
-    MaxLevel: 4
+    MaxLevel: 4,
   },
   // ArtifactsMainStats.discover(Number stars, Number level, String stat)
   discover(stars, level, stat) {
-    switch (stat) {
-      case 'HPFlat':
-      case 'ATKFlat':
-      case 'HPPerc':
-      case 'ATKPerc':
-      case 'DEFPerc':
-      case 'PhysDmg':
-      case 'ElemDmg':
-      case 'EM':
-      case 'ER':
-      case 'CritRate':
-      case 'CritDmg':
-      case 'HealBonus':
-        break;
-      default:
-        throw new Error('Incorrect stat value')
+    try {
+      verifyStat(stat);
+      const rarity = verifyRarityAndLevel(stars, level);
+      return this[rarity][stat][level];
     }
-    
-    switch (stars) {
-      case 5:
-        if (level < 0 || level > 20) {
-          throw new Error('Incorrect level value')
-        }
-        return this.fiveStar[stat][level]
-      case 4:
-        if (level < 0 || level > 16) {
-          throw new Error('Incorrect level value')
-        }
-        return this.fourStar[stat][level]
-      case 3:
-        if (level < 0 || level > 12) {
-          throw new Error('Incorrect level value')
-        }
-        return this.threeStar[stat][level]
-      case 2:
-        if (level < 0 || level > 8) {
-          throw new Error('Incorrect level value')
-        }
-        return this.twoStar[stat][level]
-      case 1:
-        if (level < 0 || level > 4) {
-          throw new Error('Incorrect level value')
-        }
-        return this.oneStar[stat][level]
-      default:
-        throw new Error('Incorrect stars value')
+    catch (e) {
+      console.log(e);
+      return 'Error';
     }
+  },
+};
+
+function throwLevelError(stars, level) {
+  throw new Error(`Incorrect level value. Rarity: ${stars}, Level: ${level}`);
+}
+
+function throwRarityError(stars, level) {
+  throw new Error(`Incorrect rarity value. Rarity: ${stars}, Level: ${level}`);
+}
+
+function verifyStat(stat) {
+  switch (stat) {
+  case 'HPFlat':
+  case 'ATKFlat':
+  case 'HPPerc':
+  case 'ATKPerc':
+  case 'DEFPerc':
+  case 'PhysDmg':
+  case 'ElemDmg':
+  case 'EM':
+  case 'ER':
+  case 'CritRate':
+  case 'CritDmg':
+  case 'HealBonus':
+    return;
+  default:
+    throw new Error(`Incorrect stat name. Stat: ${stat}`);
   }
 }
 
-module.exports = ArtifactsMainStats
+function verifyRarityAndLevel(stars, level) {
+  switch (stars) {
+  case 5:
+    if (level < 0 || level > 20) {
+      return throwLevelError(stars, level);
+    }
+    return 'fiveStar';
+  case 4:
+    if (level < 0 || level > 16) {
+      return throwLevelError(stars, level);
+    }
+    return 'fourStar';
+  case 3:
+    if (level < 0 || level > 12) {
+      return throwLevelError(stars, level);
+    }
+    return 'threeStar';
+  case 2:
+    if (level < 0 || level > 8) {
+      return throwLevelError(stars, level);
+    }
+    return 'twoStar';
+  case 1:
+    if (level < 0 || level > 4) {
+      return throwLevelError(stars, level);
+    }
+    return 'oneStar';
+  default:
+    return throwRarityError(stars, level);
+  }
+}
+
+module.exports = ArtifactsMainStats;
