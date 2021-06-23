@@ -8,7 +8,7 @@
 */
 
 /* eslint-disable comma-spacing, no-multi-spaces */
-const ArtifactsSubstats = {
+const ArtifactsSubStats = {
   fiveStar: {
     HPFlat:   [209, 239, 269, 299],
     ATKFlat:  [14 , 16 , 18 , 19 ],
@@ -74,7 +74,7 @@ const ArtifactsSubstats = {
     CritDmg:  [1.6, 1.9],
     MaxLevel: 4,
   },
-  // ArtifactsSubstats.calculator(String stat, Number value, Number level, Number stars)
+  // ArtifactsSubStats.calculator(String stat, Number value, Number level, Number stars)
   calculator(stat, value, level, stars) {
     let rarity, maxUpgradesCount;
     try {
@@ -87,7 +87,7 @@ const ArtifactsSubstats = {
       return 'Error';
     }
 
-    const artifactStat = ArtifactsSubstats[rarity][stat];
+    const artifactStat = ArtifactsSubStats[rarity][stat];
     let matches;
     try {
       matches = verifyUpgradeMatches(value, maxUpgradesCount, artifactStat);
@@ -568,4 +568,4 @@ function verifyUpgradeMatches(value, maxUpgradesCount, artifactStat) {
   }
 }
 
-module.exports = ArtifactsSubstats;
+module.exports = ArtifactsSubStats;

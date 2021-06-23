@@ -1,5 +1,5 @@
 const ArtifactsMainStats = require('./ArtifactsMainStats');
-const ArtifactsSubstats = require('./ArtifactsSubstats');
+const ArtifactsSubStats = require('./ArtifactsSubStats');
 
 /*
   This class implements the other two artifact-related files.
@@ -15,19 +15,19 @@ class Artifact {
     /* Can I group these two lines below together? */
     this.mainStat = { name: mainStat };
     this.mainStat.value = ArtifactsMainStats.discover(this.stars, this.level, this.mainStat.name);
-    this.substats = [];
+    this.subStats = [];
   }
 
-  setSubstat(number, stat, value) {
-    const upgrades = ArtifactsSubstats.calculator(stat, value, this.level, this.stars);
+  setSubStat(number, stat, value) {
+    const upgrades = ArtifactsSubStats.calculator(stat, value, this.level, this.stars);
 
-    this.substats[number] = {
+    this.subStats[number] = {
       stat,
       value,
       upgrades,
     };
 
-    return this.substats[number];
+    return this.subStats[number];
   }
 }
 

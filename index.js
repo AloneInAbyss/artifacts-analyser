@@ -1,10 +1,10 @@
 const Artifact = require('./utils/Artifact');
 
 const GanyuSands = new Artifact('Wanderer\'s Troupe', 5, 'Sands', 20, 'ATKPerc');
-GanyuSands.setSubstat(0, 'CritDmg', 46.8);
-GanyuSands.setSubstat(1, 'CritRate', 23.4);
-GanyuSands.setSubstat(2, 'HPPerc', 34.8);
-GanyuSands.setSubstat(3, 'ER', 39);
+GanyuSands.setSubStat(0, 'CritDmg', 46.8);
+GanyuSands.setSubStat(1, 'CritRate', 23.4);
+GanyuSands.setSubStat(2, 'HPPerc', 34.8);
+GanyuSands.setSubStat(3, 'ER', 39);
 console.log(GanyuSands);
 
 /*
@@ -38,7 +38,7 @@ console.log(GanyuSands);
   O substat não pode se repetir nem ser igual ao mainstat.
   Verificar o mainstat de acordo com o tipo de peça.
 
-  Na função setSubstat verificar se number é entre 0~3
+  Na função setSubStat verificar se number é entre 0~3
   (ou 1~4 para facilitar a legibilidade, mas subtrair no índice do array)
 
   Verificar se a soma de upgrades de substats não ultrapassa o limite
